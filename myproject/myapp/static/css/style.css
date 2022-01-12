@@ -1,0 +1,87 @@
+:root
+{
+	--bgcolor: #f8f9fd;
+	--font1: 'Open Sans', sans-serif;
+	--headbg: #8942a8;
+	--grey:#F5F5F5;
+}
+
+
+body
+{
+	background-color: var(--bgcolor);
+	font-family: var(--font1);
+}
+
+h1,h2
+{
+	font-weight: 300;
+	font-size: 200%;
+	background-color: var(--headbg);
+	color: white;
+}
+
+input
+{
+	border-style: none;
+	height: 40px;
+	background-color: var(--grey);
+	font-style: var(--font1);
+	font-weight: 300;
+
+}
+
+label
+{
+	font-style: var(--font1);
+	font-weight: 500;
+}
+
+
+a
+{
+	color: var(--headbg);
+	text-decoration: none;
+	font-weight: 500;
+}
+
+a:hover
+{
+	text-decoration: none;
+	color: var(--headbg);
+}
+
+.btn
+{
+	background-color:var(--headbg);
+	color: white;
+	width: 20%;
+}
+
+.btn:hover
+{
+	border: 1px solid var(--headbg);
+	background-color: white;
+	color: var(--headbg);
+}
+
+.user-details
+{
+	position: relative;
+	margin: auto;
+	background-color: white;
+	width: 50%;
+	left: 21%;
+}
+
+.user-data input
+{
+	background-color: var(--grey);
+	border: none;
+}
+
+.user-details h2
+{
+	font-size: 18px;
+}
+

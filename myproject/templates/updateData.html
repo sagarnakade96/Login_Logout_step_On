@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">            
+            Welcome, User!
+          </a>
+        </div>
+      </nav>
+</div>
+
+<div class="container py-4">
+	<div class="information">
+	  <div class="information-head">
+		<h2 class="text-center"> User Details </h2>
+	  </div>
+  	<form class="row g-3 needs-validation" method="POST" action="{% url 'update_data' id %}" novalidate>
+		{% csrf_token %}	
+	  <div class="information-content">
+	  
+		<table class="table table-hover">
+		  <thead>
+			<tr>
+			  <th scope="col">#</th>
+			  <th scope="col">Name</th>
+			  <th scope="col">Email</th>
+			  <th scope="col" colspan="2" class="text-center">Action</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <th scope="row">{{ id }}</th>
+			  <td>{{ updateForm.name }}</td>
+			  <td>{{ updateForm.email }}</td>
+				<td>
+					<input type="submit">
+				</td>
+			  <td><a href="#">Delete</a></td>
+			</tr>
+		  </tbody>
+		</table>
+	  
+	  </div>
+	</form>
+	</div>	
+  </div>
+
+
+{% endblock body %}

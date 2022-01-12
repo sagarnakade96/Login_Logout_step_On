@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+{% for message in messages %}
+	{% if messages %}
+		  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+			<strong>Success: </strong> {{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		  </div>
+	{% endif %}
+{% endfor %}
+
+
+
+{% if user.is_authenticated %}
+
+<div class="container">
+	<nav class="navbar navbar-expand-sm navbar-light bg-white">
+	  <div class="container-fluid ">
+		<label> Hello {{ request.user }},</label>
+		
+		<div class="collapse navbar-collapse " id="navbarSupportedContent">
+		  <ul class="navbar-nav ms-auto">
+			<li class="nav-item">
+			  <a class="nav-link " href="logoutUser">Logout</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{% url 'profile' request.id %}">Update Profile</a>
+			</li>				
+		  </ul>		  
+		</div>
+	  </div>
+	</nav>
+</div>
+
+<div class="container py-4">
+	<div class="information">
+	  <div class="information-head">
+		<h2 class="text-center"> User Details </h2>
+	  </div>
+  
+	  <div class="information-content">
+	  
+		<table class="table table-hover">
+		  <thead>
+			<tr>
+			  <th scope="col">#</th>
+			  <th scope="col">Name</th>
+			  <th scope="col">Email</th>
+			  <th scope="col" colspan="2" class="text-center">Action</th>
+			</tr>
+		  </thead>
+		  <tbody>
+            
+			<tr>
+			  <th scope="row">{{ id }}</th>
+			  <td>{{ name }}</td>
+			  <td>{{ email }}</td>
+			  <td><a href="#">Update</a></td>
+			  <td><a href="#">Delete</a></td>
+			</tr>
+			
+		  </tbody>
+		</table>
+	  
+	  </div>
+	</div>
+  </div>
+  {% else %}
+  <h1> Please <a href="#">Register</a> Yourself Or <a href="#">Login in </a>from Here</h1>
+  {% endif %}
+
+
+{% endblock body %}

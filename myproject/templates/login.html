@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Login Form{% endblock title %}
+{% block body %}
+{% for message in messages %}
+	{% if messages %}
+		  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+			<strong>Success: </strong> {{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		  </div>
+	{% endif %}
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="container">
+	  <nav class="navbar navbar-expand-sm navbar-light bg-white">
+		<div class="container-fluid ">
+		  <label> Hello {{ request.user }},</label>
+		  
+		  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+			<ul class="navbar-nav ms-auto">
+			  <li class="nav-item">
+				<a class="nav-link " href="logoutUser">Logout</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="{% url 'profile' request.id %}">Update Profile</a>
+			  </li>			
+			</ul>		  
+		  </div>
+		</div>
+	  </nav>
+</div>
+{% else %}
+<div class="container-fluid ">
+	<div class="heading-tag m-4 text-center">
+		<h1 class="py-2">Login Form</h1>
+	</div>
+	<div class="user-details m-5 p-4 shadow rounded">
+		<div class="user-data">
+			<form action="loginUser" method="POST">
+				{% csrf_token %}
+				<div class="mb-3">
+					<label for="useremail" class="form-label">Username</label>
+					<input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
+					<div id="emailHelp" class="form-text">enter your registered Username</div>
+				</div>
+				<div class="mb-3">
+					<label for="userpassword" class="form-label">Password</label>
+					<input type="password" class="form-control" id="userpassword" name="userpassword">
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		<div class="already-user my-4">
+			<p class="text-dark bg-light p-2"> Not a User? <a href="registerForm"> Register Here </a> Here...</p>
+		</div>
+	</div>
+</div>
+
+
+{% endif %}
+{% endblock body %}

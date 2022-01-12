@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% if user.is_authenticated %}
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-light bg-white">
+  <div class="container-fluid ">
+    <label> Hello {{ request.user }},</label>
+    
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+      <a class="nav-link " href="logoutUser">Logout</a>
+      </li>
+      <li class="nav-item">
+				<a class="nav-link" href="{% url 'profile' %}">Update Profile</a>
+			  </li>				
+    </ul>		  
+    </div>
+  </div>
+  </nav>
+</div>
+{% else %}
+<div class="container-fluid ">
+  <div class="heading-tag m-4 text-center">
+    <h1 class="py-2">Registration Form</h1>
+  </div>
+  <div class="user-details m-5 p-4 shadow rounded">
+    <form class="row g-3 r" method="POST" action="createUser">
+      {% csrf_token %}
+      <h2 class="my-4 py-2 text-center">User Details</h2>
+      <div class="user-data col-md-6">
+        <label for="inputEmail4" class="form-label">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="enter your name" name="name">
+      </div>
+
+      <div class="user-data col-md-6">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Choose Username" name="username">
+      </div>
+
+
+      <div class="user-data col-md-6">
+        <label for="inputEmail4" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="enter email address" name="email">
+      </div>
+      
+      <div class="user-data col-md-6">
+        <label for="inputPassword4" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="enter your password" name="password1">
+      </div>
+      <div class="user-data col-md-6">
+        <label for="inputPassword4" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="inputPassword5" placeholder="confirm your password" name="password2">
+      </div>
+     
+      
+      <div class="user-data col-12 text-center">
+        <button type="submit" class="btn">Submit</button>
+        {% comment %} onclick="return alert('Record Saved Successfully')" {% endcomment %}
+      </div>
+    </form>
+    <div class="already-user my-4">
+      <p class="text-dark bg-light p-2"> Already User? <a href="loginUserProfile"> Log In </a> Here...</p>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+
+{% endblock body %}
